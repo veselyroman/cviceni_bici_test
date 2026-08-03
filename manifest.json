@@ -1,0 +1,6 @@
+{
+"name": "Drum Test",
+"short_name": "Drum",
+"start_url": "/",
+"display": "standalone"
+}
