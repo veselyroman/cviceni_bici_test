@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bicí deník</title>
+
+<link rel="manifest" href="manifest.json">
+
+<style>
+body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f5f5f5;
+    overflow:hidden;
+    font-size:18px;
+}
+
+.page{
+    display:none;
+    min-height:100dvh;
+    padding:10px;
+    padding-bottom:90px;
+    box-sizing:border-box;
+    overflow-y:auto;
+}
+
+.page.active{
+    display:block;
+}
+
+header{
+    display:flex;
+    justify-content:space-between;
+    gap:6px;
+    margin-bottom:10px;
+}
+
+header button,
+.footer button{
+    flex:1;
+    padding:12px;
+    font-size:18px;
+    border:1px solid #bbb;
+    border-radius:6px;
+    background:#fff;
+}
+
+.card{
+    border-bottom:1px solid #ccc;
+    padding:10px 0;
+}
+
+.card-title{
+    font-weight:bold;
+    margin-bottom:4px;
+}
+
+.form-row{
+    margin-bottom:12px;
+}
+
+label{
+    display:block;
+    margin-bottom:4px;
+    font-weight:bold;
+}
+
+select,
+textarea,
+input{
+    width:100%;
+    padding:10px;
+    box-sizing:border-box;
+    font-size:18px;
+    border:1px solid #bbb;
+    border-radius:6px;
+}
+
+.footer{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    background:white;
+    padding:10px;
+    display:flex;
+    gap:10px;
+    border-top:1px solid #ccc;
+}
+
+.history-bg{
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,0.95),
+            rgba(255,255,255,0.95)
+        ),
+        url("images/drumset.png");
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:60%;
+}
+
+.exercise-bg{
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,0.95),
+            rgba(255,255,255,0.95)
+        ),
+        url("images/sticks.png");
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:40%;
+}
+
+.settings-bg{
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,0.95),
+            rgba(255,255,255,0.95)
+        ),
+        url("images/snare.png");
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:35%;
+}
+
+h2{
+    margin-top:0;
+}
+
+@media (orientation:landscape){
+
+    body{
+        font-size:18px;
+    }
+
+    header button,
+    .footer button,
+    select,
+    textarea,
+    input{
+        font-size:18px;
+    }
+
+    .card-title{
+        font-size:18px;
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+<div id="historyPage" class="page active history-bg">
+
+    <header>
+        <button onclick="showPage('exercisePage')">Cvičení</button>
+        <button onclick="showPage('filterPage')">Filtr</button>
+        <button onclick="showPage('settingsPage')">Nastavení</button>
+    </header>
+
+    <div class="card">
+        <div class="card-title">
+            03.08.2026 | K1-osm | 150 BPM | 3×
+        </div>
+        <div>
+            Ukázkové cvičení pro ověření vzhledu.
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-title">
+            02.08.2026 | A1-osm | 145 BPM | 3×
+        </div>
+        <div>
+            Druhé ukázkové cvičení.
+        </div>
+    </div>
+
+</div>
+
+<div id="exercisePage" class="page exercise-bg">
+
+    <h2>Cvičení</h2>
+
+    <div class="form-row">
+        <label>Typ cvičení</label>
+        <select>
+            <option>K1-osm</option>
+            <option>A1-osm</option>
+        </select>
+    </div>
+
+    <div class="form-row">
+        <label>Popis cvičení</label>
+        <select>
+            <option>Ukázkový popis</option>
+        </select>
+    </div>
+
+    <div class="form-row">
+        <label>Metronom</label>
+        <select>
+            <option>150</option>
+        </select>
+    </div>
+
+    <div class="form-row">
+        <label>Opakování</label>
+        <select>
+            <option>3×</option>
+        </select>
+    </div>
+
+    <div class="form-row">
+        <label>Poznámka</label>
+        <textarea rows="4"></textarea>
+    </div>
+
+    <div class="footer">
+        <button onclick="showPage('historyPage')">Zpět</button>
+        <button>Uložit</button>
+    </div>
+
+</div>
+
+<div id="settingsPage" class="page settings-bg">
+
+    <h2>Nastavení</h2>
+
+    <div class="form-row">
+        <label>Typ cvičení</label>
+        <input type="text">
+    </div>
+
+    <div class="form-row">
+        <label>Popis cvičení</label>
+        <textarea rows="5"></textarea>
+    </div>
+
+    <div class="footer">
+        <button onclick="showPage('historyPage')">Zpět</button>
+        <button>Uložit</button>
+    </div>
+
+</div>
+
+<div id="filterPage" class="page history-bg">
+
+    <h2>Filtr</h2>
+
+    <div class="card">Vše</div>
+    <div class="card">K1-osm</div>
+    <div class="card">A1-osm</div>
+    <div class="card">E1</div>
+
+    <div class="footer">
+        <button onclick="showPage('historyPage')">Zpět</button>
+    </div>
+
+</div>
+
+<script>
+
+function showPage(pageId){
+    document.querySelectorAll('.page')
+        .forEach(page => page.classList.remove('active'));
+
+    document.getElementById(pageId)
+        .classList.add('active');
+}
+
+</script>
+
+</body>
+</html>
